@@ -1,0 +1,33 @@
+﻿{
+    "Kestrel": {
+        "Endpoints": {
+            "Https": {
+                "Certificate": {
+                    "Path": "PATH_TO_CERT.pfx"
+                }
+            }
+        }
+    },
+    "ReverseProxy": {
+        "Routes": {
+            "route1": {
+                "ClusterId": "cluster1",
+                "Match": {
+                    "Path": "{**catch-all}",
+                    "Hosts": [
+                        "a.domain.tld"
+                    ]
+                }
+            }
+        },
+        "Clusters": {
+            "cluster1": {
+                "Destinations": {
+                    "destination1": {
+                        "Address": "http://localhost:1234/"
+                    }
+                }
+            }
+        }
+    }
+}
